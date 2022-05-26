@@ -17,9 +17,9 @@ pygame.display.set_icon(icono)
 fondo = pygame.image.load('fondo.jpg')
 
 # Música source
-mixer.music.load('MusicaFondo.mp3')
-mixer.music.set_volume(0.3)
-mixer.music.play(-1)
+# mixer.music.load('MusicaFondo.mp3')
+#mixer.music.set_volume(0.3)
+#mixer.music.play(-1)
 
 # Jugador
 IMGJug = pygame.image.load("cohete.png")
@@ -52,12 +52,12 @@ verBala = False
 
 # Puntos
 puntaje = 0
-fuente = pygame.font.Font('fastest.ttf', 32)
+fuente = pygame.font.Font('freesansbold.ttf', 32)
 texto1 = 10
 texto2 = 10
 
 # Final del juego
-finalFont = pygame.font.Font('fastest.ttf', 40)
+finalFont = pygame.font.Font('freesansbold.ttf', 40)
 
 
 def texto_final():
@@ -118,8 +118,8 @@ while se_ejecuta:
             if evento.key == pygame.K_RIGHT:
                 jugador1_cambio = 1
             if evento.key == pygame.K_SPACE:
-                sonido_bala = mixer.Sound('disparo.mp3')
-                sonido_bala.play()
+                #sonido_bala = mixer.Sound('disparo.mp3')
+                #sonido_bala.play()
                 if not verBala:
                     b1 = jugador1
                     disparar_bala(b1, b2)
@@ -161,8 +161,8 @@ while se_ejecuta:
         # colision
         colision = hay_colision(enemigo1[e], enemigo2[e], b1, b2)
         if colision:
-            sonido_colision = mixer.Sound('golpe.mp3')
-            sonido_colision.play()
+            #sonido_colision = mixer.Sound('golpe.mp3')
+            #sonido_colision.play()
             b2 = 500
             verBala = False
             puntaje += 1
