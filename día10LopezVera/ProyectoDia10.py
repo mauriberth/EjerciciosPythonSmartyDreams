@@ -56,7 +56,7 @@ fuente = pygame.font.Font('fastest.ttf', 32)
 texto1 = 10
 texto2 = 10
 
-# texto final de juego
+# Final del juego
 finalFont = pygame.font.Font('fastest.ttf', 40)
 
 
@@ -65,30 +65,30 @@ def texto_final():
     pantalla.blit(mi_finalFont, (60, 200))
 
 
-# funcion mostrar puntaje
+# Ver puntaje
 def mostrar_puntaje(x, y):
     texto = fuente.render(f"Puntaje: {puntaje}", True, (255, 255, 255))
     pantalla.blit(texto, (x, y))
 
 
-# fucion jugador
+# Jugador F
 def jugador(x, y):
     pantalla.blit(IMGJug, (x, y))
 
 
-# fucion enemigo
+# Enemigo F
 def enemigo(x, y, ene):
     pantalla.blit(IMGEnemigo[ene], (x, y))
 
 
-# funcion disparar bala
+# Disparar
 def disparar_bala(x, y):
     global verBala
     verBala = True
     pantalla.blit(IMGBala, (x + 16, y + 10))
 
 
-# funcion detectar colisiones
+# Colisiones
 def hay_colision(x_1, y_1, x_2, y_2):
     distancia = math.sqrt(math.pow(x_1 - x_2, 2) + math.pow(y_2 - y_1, 2))
     if distancia < 27:
@@ -97,21 +97,21 @@ def hay_colision(x_1, y_1, x_2, y_2):
         return False
 
 
-# Loop del juego
+# Loop 
 se_ejecuta = True
 while se_ejecuta:
 
-    # image de fondo
+    # Fondo
     pantalla.blit(fondo, (0, 0))
 
-    # iterar eventos
+    # Iteraración de eventos
     for evento in pygame.event.get():
 
-        # evento cerrar
+        # Cerrar
         if evento.type == pygame.QUIT:
             se_ejecuta = False
 
-        # evento presionar teclas
+        #Presionar telca
         if evento.type == pygame.KEYDOWN:
             if evento.key == pygame.K_LEFT:
                 jugador1_cambio = -1
@@ -124,24 +124,24 @@ while se_ejecuta:
                     b1 = jugador1
                     disparar_bala(b1, b2)
 
-        # evento soltar flechas
+        # Soltar flechas
         if evento.type == pygame.KEYUP:
             if evento.key == pygame.K_LEFT or evento.key == pygame.K_RIGHT:
                 jugador1_cambio = 0
 
-    # modificar ubicacion del jugador
+    # Cambiar ubic de jug
     jugador1 += jugador1_cambio
 
-    # mantener dentro de bordes al jugador
+    # jugador dentro de pantalla
     if jugador1 <= 0:
         jugador1 = 0
     elif jugador1 >= 736:
         jugador1 = 736
 
-    # modificar ubicacion del enemigo
+    # Cambiar ubic de enemigo
     for e in range(totalEnemigos):
 
-        # fin del juego
+        # Fin 
         if enemigo2[e] > 500:
             for k in range(totalEnemigos):
                 enemigo2[k] = 1000
@@ -150,7 +150,7 @@ while se_ejecuta:
 
         enemigo1[e] += enemigo1_cambio[e]
 
-    # mantener dentro de bordes al enemigo
+    # enemigo dentro de pantalla
         if enemigo1[e] <= 0:
             enemigo1_cambio[e] = 1
             enemigo2[e] += enemigo2_cambio[e]
@@ -171,7 +171,7 @@ while se_ejecuta:
 
         enemigo(enemigo1[e], enemigo2[e], e)
 
-    # movimiento bala
+    # Mover bala
     if b2 <= -64:
         b2 = 500
         verBala = False
@@ -185,5 +185,5 @@ while se_ejecuta:
 
     mostrar_puntaje(texto1, texto2)
 
-    # actualizar
+    # Refresh
     pygame.display.update()
